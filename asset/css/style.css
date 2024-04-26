@@ -35,6 +35,7 @@
       --h2-font-size: 1.5rem;
       --normal-font-size: 1rem;
     }
+    
   }
   
   * {
@@ -69,7 +70,7 @@
     text-decoration: none;
   }
 
-  
+
 
 .search {
   position: fixed;
@@ -227,7 +228,7 @@
 
 /*=============== BREAKPOINTS ===============*/
 /* For medium devices */
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 600px) {
   .search {
     padding-top: 10rem;
   }
@@ -294,6 +295,100 @@
   background-color: rgb(0, 0, 0);
 }
 
+@media screen and (max-width: 600px){
+  .Intro{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    margin-left: 69px;
+    margin-top: 180px;
+    z-index: var(--z-fixed);
+  }
+  
+  .Intro h1{
+    margin-left: 8px;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+  }
+  
+  .Intro p{
+    font-size: 1.5rem;
+    color: white;
+  }
+  
+  .Intro button{
+    background-color: #ffffff;
+    font-size: 0.5rem;
+    height: 20px;
+    width: 80px;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    z-index: 10000000;
+    color: rgb(0, 0, 0);
+    margin-top: 50px;
+    transition: 0.4s;
+  }
+  
+  
+  .Intro button:hover{
+    transition: 0.4s;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .Intro{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    margin-left: 69px;
+    margin-top: 180px;
+    z-index: var(--z-fixed);
+  }
+  
+  .Intro h1{
+    margin-left: 8px;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+  }
+  
+  .Intro p{
+    font-size: 1.5rem;
+    color: white;
+  }
+  
+  .Intro button{
+    background-color: #ffffff;
+    font-size: 0.5rem;
+    height: 20px;
+    width: 80px;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    z-index: 10000000;
+    color: rgb(0, 0, 0);
+    margin-top: 50px;
+    transition: 0.4s;
+  }
+  
+  
+  .Intro button:hover{
+    transition: 0.4s;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+  }
+}
+
 /* For large devices */
 @media screen and (min-width: 1023px) {
   .nav {
@@ -311,6 +406,7 @@
     flex-direction: row;
     column-gap: 3rem;
   }
+  
 }
 
 /* Show the dropdown menu on hover */
@@ -347,9 +443,10 @@ section {
   padding: max(2vh, 1.5rem);
   padding: 0 130px 0 130px;
 }
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 800px) {
   section {
-    height: 65vh;
+    height: 35vh;
+    object-fit: cover;
   }
 }
 @media screen and (max-width: 470px) {
@@ -406,7 +503,6 @@ section .card .card__img {
 }
 
  /*===========about Section=========*/
-
  .flexx{
   margin-left: 88px;
  }
