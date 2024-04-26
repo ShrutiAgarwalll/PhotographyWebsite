@@ -1,0 +1,685 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --header-height: 3.5rem;
+  
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: hsl(0, 0%, 3%);
+    --title-color: hsl(0, 0%, 100%);
+    --body-color: hsl(230, 100%, 98%);
+    --container-color: hsl(0, 0%, 100%);
+    --border-color: hsl(230, 25%, 80%);
+  
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Syne", sans-serif;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: .938rem;
+  
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+  
+    /*========== z index ==========*/
+    --z-fixed: 100;
+    --z-modal: 1000;
+  }
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1023px) {
+    :root {
+      --h2-font-size: 1.5rem;
+      --normal-font-size: 1rem;
+    }
+  }
+  
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body,
+  input,
+  button {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+  }
+  
+  
+  input,
+  button {
+    border: none;
+    outline: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+
+  
+
+.search {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+  background-color: hsla(230, 75%, 15%, .1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px); /* For safari */
+  padding: 8rem 1.5rem 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.search__close
+{
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+}
+
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+  height: 80px;
+  z-index: var(--z-fixed);
+  padding: 0 100px 0 100px;
+}
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav__logo {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  transition: smooth 0.4s;
+  font-size: 2rem;
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  margin-left: 120px;
+}
+
+.nav__search, 
+.nav__toggle, 
+.nav__close {
+  font-size: 2rem;
+  color: var(--title-color);
+  cursor: pointer;
+  transition: smooth .4s;
+}
+
+:is(.nav__logo, .nav__search, .nav__toggle, .nav__link):hover {
+  color: var(--first-color);
+  transition: 0.4s;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1023px) {
+  .nav__menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    background-color: rgba(209, 209, 210, 0.105);
+    box-shadow: 0 8px 16px hsla(230, 75%, 32%, .15);
+    width: 100%;
+    padding-block: 4.5rem 4rem;
+    transition: top .4s;
+  }
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  text-align: center;
+}
+
+.nav__link {
+  color: rgb(255, 255, 255);
+  
+  transition: color .4s;
+  font-size: 1.4rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+.nav__close {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.5rem;
+}
+
+/* Show menu */
+.show-menu {
+  top: 0;
+}
+
+/*=============== SEARCH ===============*/
+.search__form {
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  background-color: var(--container-color);
+  box-shadow: 0 8px 32px hsla(230, 75%, 15%, .2);
+  padding-inline: 1rem;
+  border-radius: .5rem;
+  transform: translateY(-1rem);
+  transition: transform .4s;
+}
+
+.search__icon {
+  font-size: 1.25rem;
+  color: var(--title-color);
+}
+
+.search__input {
+  width: 100%;
+  padding-block: 1rem;
+  background-color: var(--container-color);
+  color: var(--text-color);
+  border: none;
+}
+
+.search__input::placeholder {
+  color: var(--text-color);
+}
+
+/* Show search */
+.show-search {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.show-search .search__form {
+  transform: translateY(0);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .search {
+    padding-top: 10rem;
+  }
+
+  .search__form {
+    max-width: 450px;
+    margin-inline: auto;
+  }
+
+  .search__close{
+    width: max-content;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    font-size: 2rem;
+  }
+
+}
+
+/*==== Intro ===*/
+.Intro{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  margin-left: 69px;
+  margin-top: 200px;
+  z-index: var(--z-fixed);
+}
+
+.Intro h1{
+  margin-left: 8px;
+  font-size: 4rem;
+  line-height: 1.2;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+}
+
+.Intro p{
+  font-size: 1.5rem;
+  color: white;
+}
+
+.Intro button{
+  background-color: #ffffff;
+  font-size: 1.5rem;
+  height: 60px;
+  width: 200px;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  z-index: 10000000;
+  color: rgb(0, 0, 0);
+  margin-top: 150px;
+  transition: 0.4s;
+}
+
+
+.Intro button:hover{
+  transition: 0.4s;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+}
+
+/* For large devices */
+@media screen and (min-width: 1023px) {
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    column-gap: 3rem;
+  }
+  .nav__close, 
+  .nav__toggle {
+    display: none;
+  }
+  .nav__menu {
+    margin-left: auto;
+  }
+  .nav__list {
+    flex-direction: row;
+    column-gap: 3rem;
+  }
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+} 
+@media screen and (min-width: 1150px) {
+  .container {
+    margin-inline: auto;
+  }
+}
+
+.main #carouselExampleIndicators{
+    z-index: 1;
+
+}
+
+/* ============Photo Grid=========== */
+.card__img img{
+  width: 100%;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 29.4% 35% 15% 25%;
+  gap: 10px;
+  place-content: center;
+  grid-template-rows: 50% 50%;
+  height: 94vh;
+  min-height: 460px;
+  padding: max(2vh, 1.5rem);
+  padding: 0 130px 0 130px;
+}
+@media screen and (max-width: 690px) {
+  section {
+    height: 65vh;
+  }
+}
+@media screen and (max-width: 470px) {
+  section {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 35%);
+  }
+}
+section .card {
+  border-radius: 25px;
+  box-shadow: -2px 4px 15px rgba(0, 0, 0, 0.26);
+}
+@media screen and (max-width: 470px) {
+  section .card {
+    grid-column: span 1;
+  }
+}
+section .card:nth-child(2) {
+  grid-column: 2/3;
+  grid-row: span 2;
+}
+@media screen and (max-width: 690px) {
+  section .card:nth-child(2) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+section .card:nth-child(3) {
+  grid-column: span 2;
+}
+@media screen and (max-width: 690px) {
+  section .card:nth-child(3) {
+    grid-column: 2/4;
+    grid-row: 1/2;
+  }
+}
+@media screen and (max-width: 690px) {
+  section .card:nth-child(6) {
+    grid-column: 2/4;
+    grid-row: 2/3;
+  }
+}
+@media screen and (max-width: 470px) {
+  section .card:nth-child(5) {
+    grid-column: span 2;
+  }
+}
+section .card img {
+  border-radius: 25px;
+}
+section .card .card__img {
+  position: relative;
+  height: 100%;
+}
+
+ /*===========about Section=========*/
+
+ .flexx{
+  margin-left: 88px;
+ }
+ .about{
+  display: flex;
+  justify-content:flex-start;
+ }
+
+ .about .text-p .hero{
+    font-size: 3rem;
+    text-wrap: wrap;
+    font-weight: 600;
+    margin-left: 270px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-family: "Poppins", sans-serif;
+ }
+
+
+ @media screen and (max-width: 700px) {
+  .flexx{
+    margin-left: 88px;
+
+   }
+   .owl-carousel .item img{
+    height: 100px;
+    width: 50px;
+    margin-top: 200px;
+   }
+  
+   .owl-carousel .item1 img{
+    width: 50px;
+    height: 200px;
+
+   }
+   .about{
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+   }
+  
+   .about .text-p .hero{
+      font-size: 3rem;
+      text-wrap: wrap;
+      font-weight: 600;
+      margin-left: 270px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      font-family: "Poppins", sans-serif;
+   }
+ }
+
+ @media screen and (max-width: 1023px){
+  .flexx{
+    margin-left: 88px;
+
+   }
+   .owl-carousel .item img{
+    height: 100px;
+    width: 50px;
+    margin-top: 200px;
+   }
+  
+   .owl-carousel .item1 img{
+    width: 50px;
+    height: 200px;
+
+   }
+   .about{
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+   }
+  
+   .about .text-p .hero{
+      font-size: 3rem;
+      text-wrap: wrap;
+      font-weight: 600;
+      margin-left: 270px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      font-family: "Poppins", sans-serif;
+   }
+ }
+ @media screen and (max-width: 470px){
+  .flexx{
+    margin-left: 88px;
+
+   }
+   .owl-carousel .item img{
+    height: 100px;
+    width: 50px;
+    margin-top: 200px;
+   }
+  
+   .owl-carousel .item1 img{
+    width: 50px;
+    height: 200px;
+
+   }
+   .about{
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+   }
+  
+   .about .text-p .hero{
+      font-size: 3rem;
+      text-wrap: wrap;
+      font-weight: 600;
+      margin-left: 270px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      font-family: "Poppins", sans-serif;
+   }
+ }
+ .pic-section{
+  height: 100vh;
+  width: 100%;
+ }
+
+ .pic-section img{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  object-fit: cover;
+ }
+
+ .top-corner{
+  position: absolute;
+  color: white;
+  margin-left: 30px;
+  margin-top: 30px;
+ }
+
+ .centerall{
+  position: relative;
+  color: white;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.2;
+ }
+
+ #para1{
+  padding-top: 20%;
+ }
+
+ .text-section{
+  margin: 100px 0 0 100px;
+  text-align: center;
+  width: 60%;
+  margin-left: 21%;
+ }
+
+ .text-section h2{
+  font-size: 2.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+ }
+ .text-section p{
+  font-family: "Poppins", sans-serif;
+
+ }
+ .text-section button{
+  margin-top: 100px;
+  background-color: black;
+  border: none;
+  height: 40px;
+  width: 120px;
+  border-radius: 10px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+ }
+
+ .text-section button:hover{
+  transition: 0.4s;
+  color: black;
+  background-color: white ;
+ }
+
+
+ .owl-carousel .item img{
+  height: 400px;
+  object-fit: cover;
+  margin-top: 100px;
+ }
+
+ .owl-carousel .item1{
+  object-fit: cover;
+  height: 600px;
+  width: 500px;
+ }
+
+ footer{
+  background-color: #111;
+}
+.footerContainer{
+  width: 100%;
+  padding: 70px 30px 20px ;
+}
+.socialIcons{
+  display: flex;
+  justify-content: center;
+}
+.socialIcons a{
+  text-decoration: none;
+  padding:  10px;
+  background-color: white;
+  margin: 10px;
+  border-radius: 50%;
+}
+.socialIcons a i{
+  font-size: 2em;
+  color: black;
+  opacity: 0,9;
+}
+/* Hover affect on social media icon */
+.socialIcons a:hover{
+  background-color: #111;
+  transition: 0.5s;
+}
+.socialIcons a:hover i{
+  color: white;
+  transition: 0.5s;
+}
+.footerNav{
+  margin: 30px 0;
+}
+.footerNav ul{
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+.footerNav ul li a{
+  color:white;
+  margin: 20px;
+  text-decoration: none;
+  font-size: 1.3em;
+  opacity: 0.7;
+  transition: 0.5s;
+
+}
+.footerNav ul li a:hover{
+  opacity: 1;
+}
+.footerBottom{
+  background-color: #000;
+  padding: 20px;
+  text-align: center;
+}
+.footerBottom p{
+  color: white;
+}
+.designer{
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 0px 5px;
+}
+@media (max-width: 700px){
+  .footerNav ul{
+      flex-direction: column;
+  } 
+  .footerNav ul li{
+      width:100%;
+      text-align: center;
+      margin: 10px;
+  }
+  .socialIcons a{
+      padding: 8px;
+      margin: 4px;
+  }
+}
